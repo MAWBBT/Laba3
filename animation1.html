@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Animation</title>
+    <style>
+        .input-container {
+            position: relative;
+            width: 200px;
+            padding-top: 20px;
+        }
+
+        input[type="text"] {
+            width: 200px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+            font-size: 16px;
+        }
+
+        .label {
+            position: absolute;
+            padding-top: 20px;
+            top: -20px; /* Начальное положение над полем ввода */
+            left: 0;
+            color: #999;
+        }
+
+        input[type="text"]:hover + .label,
+        input[type="text"]:focus + .label {
+             /* Перемещение в центр поля ввода */
+            left: 80px;
+            font-size: 16px;
+            color: #999;
+            transition: all 0.3s ease-in;
+        }
+    </style>
+</head>
+<body>
+    <div class="input-container">
+        <input type="text" placeholder=" ">
+        <div class="label">Your Name</div>
+    </div>
+</body>
+</html>
