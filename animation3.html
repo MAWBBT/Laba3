@@ -1,18 +1,121 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-    <link rel = "stylesheet" href = "style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Анимация 3</title>
-    <div class="rek1">
-        <a href = "index.html">Back</a>
-    </div>
-    <div class="rek2">
-        
-    </div>
+    <title>Переключатель значений</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .switch-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .switch {
+            width: 150px;
+            height: 50px;
+            background-color: #333;
+            border: 1px solid #555;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            box-sizing: border-box;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            position: relative;
+        }
+
+        .arrow {
+            width: 30px;
+            height: 30px;
+            background-color: transparent;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .arrow::before,
+        .arrow::after {
+            content: '';
+            width: 20px;
+            height: 2px;
+            background-color: white;
+            position: absolute;
+            transition: transform 0.2s;
+        }
+
+        .arrow.left::before {
+            transform: rotate(45deg) translate(4px, 4px);
+        }
+
+        .arrow.left::after {
+            transform: rotate(-45deg) translate(4px, -4px);
+        }
+
+        .arrow.right::before {
+            transform: rotate(-45deg) translate(-4px, 4px);
+        }
+
+        .arrow.right::after {
+            transform: rotate(45deg) translate(-4px, -4px);
+        }
+
+        .arrow:hover::before,
+        .arrow:hover::after {
+            transform: rotate(0deg) translate(0, 0);
+        }
+
+        #valueDisplay {
+            flex-grow: 1;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    
+
+<div class="switch-container">
+    <div class="switch" id="switchValue">
+        <div class="arrow left" onclick="decreaseValue()"></div>
+        <div id="valueDisplay">1/5</div>
+        <div class="arrow right" onclick="increaseValue()"></div>
+    </div>
+</div>
+
+<script>
+    let currentValue = 1;
+    const maxValue = 5;
+
+    function updateSwitch() {
+        document.getElementById('valueDisplay').textContent = `${currentValue}/5`;
+    }
+
+    function increaseValue() {
+        if (currentValue < maxValue) {
+            currentValue++;
+            updateSwitch();
+        }
+    }
+
+    function decreaseValue() {
+        if (currentValue > 1) {
+            currentValue--;
+            updateSwitch();
+        }
+    }
+</script>
+
 </body>
 </html>
